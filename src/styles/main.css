@@ -1,0 +1,316 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background: #333;
+    width: 100%;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  header .logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    
+  }
+  
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .product-listing {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .mini-cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .mini-cart-dropdown {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+  }
+  
+  .cart-page {
+    padding: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 250px;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .product-card img {
+    max-height: 150px;
+    object-fit: contain;
+    margin-bottom: 12px;
+  }
+  /* Mini Cart Dropdown */
+.mini-cart-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  display: none; /* Hidden by default, use JS to toggle visibility */
+}
+
+/* Show Mini Cart when toggled */
+.mini-cart-toggle:hover + .mini-cart-dropdown {
+  display: block;
+}
+
+/* Container for mini cart items */
+.mini-cart-items {
+  display: flex;
+  flex-direction: column; /* Items are in a column by default */
+  gap: 10px;
+}
+
+/* Each item in the mini cart */
+.mini-cart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.mini-cart-item-image {
+  width: 100px; /* Adjust image size */
+  height: 100px;
+  object-fit: cover;
+}
+
+/* Details section for each product */
+.mini-cart-item-details {
+  flex-grow: 1;
+}
+
+.mini-cart-item-details h6 {
+  margin: 0;
+  font-size: 10px;
+}
+
+.mini-cart-item-details p {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Footer with buttons */
+.mini-cart-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mini-cart-footer p {
+  font-weight: bold;
+}
+
+.view-cart, .checkout {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 8px;
+  margin-right: 8px;
+}
+
+.checkout:disabled {
+  background-color: #ccc;
+}
+
+.remove-item {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.mini-cart-items {
+  display: flex;
+  flex-direction: row; /* Display items in a row */
+  gap: 10px;
+  overflow-x: auto; /* Allow horizontal scrolling if there are too many items */
+}
+.mini-cart-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When the mini cart is open, apply styles to make it visible */
+.mini-cart-dropdown.open {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Mini Cart Button */
+.mini-cart-toggle {
+  position: fixed;
+  top: 85%;
+  right: 6%; /* Move the button 100px to the left from its original position */
+  background-color: #000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Mini Cart Panel */
+.mini-cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  padding: 20px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+/* When the mini cart is open */
+.mini-cart-panel.open {
+  transform: translateX(0);
+}
+
+/* Close Button */
+.close-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+/* Cart Items */
+.mini-cart-items {
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.mini-cart-item {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.mini-cart-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.mini-cart-item-details {
+  flex-grow: 1;
+}
+
+.mini-cart-footer {
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.view-cart,
+.checkout {
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.view-cart:disabled,
+.checkout:disabled {
+  background-color: grey;
+}
+.hero{
+  margin: 10px;
+  text-align: center;
+}
+.featured-products{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.product-grid{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+
+}
